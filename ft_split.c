@@ -1,102 +1,84 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: yoo-lee <yoo-lee@student.42tokyo.jp>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/23 12:19:49 by yoo-lee           #+#    #+#             */
-/*   Updated: 2021/04/23 17:43:55 by yoo-lee          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#include <libft.h>
 
-#include "libft.h"
-
-static char
-	**ft_alloc_split(char const *s, char c)
+int		ft_split_count_words(char *str, char *charset)
 {
-	size_t	i;
-	char	**split;
-	size_t	total;
+	int	c;
+	int	word;
+	int	lword;
 
-	i = 0;
-	total = 0;
-	while (s[i])
+	c = 0;
+	word = 0;
+	lword = 0;
+	while (str[c] != '\0')
 	{
-		if (s[i] == c)
-			total++;
-		i++;
+		if (ft_strncmp(&str[c], charset, ft_strlen(charset)) == 0)
+		{
+			c += ft_strlen(charset);
+			lword = 0;
+		}
+		else
+		{
+			if (!lword)
+				word++;
+			lword++;
+			c++;
+		}
 	}
-	split = (char**)malloc(sizeof(s) * (total + 2));
-	if (!split)
-		return (NULL);
-	return (split);
+	return (word);
 }
 
-void
-	*ft_free_all_split_alloc(char **split, size_t elts)
+void	ft_split_new_word(int *lword, int *word, int *c)
 {
-	size_t	i;
+	if (!*lword)
+		(*word)++;
+	(*lword)++;
+	(*c)++;
+}
 
-	i = 0;
-	while (i < elts)
+char	*ft_split_get_word(char *str, char *charset, int nword)
+{
+	int		c;
+	int		word;
+	int		lword;
+	char	*strword;
+
+	c = 0;
+	word = 0;
+	lword = 0;
+	while (str[c] != '\0')
 	{
-		free(split[i]);
-		i++;
+		if (ft_strncmp(&str[c], charset, ft_strlen(charset)) == 0)
+		{
+			c += ft_strlen(charset);
+			lword = 0;
+		}
+		else
+			ft_split_new_word(&lword, &word, &c);
+		if (((ft_strncmp(&str[c], charset, ft_strlen(charset)) == 0)
+			|| str[c] == '\0') && word == nword)
+			{
+				strword = malloc(sizeof(char *) * (lword + 1));
+				return (ft_strncpy(strword, &str[c - (lword)], lword));
+			}
 	}
-	free(split);
 	return (NULL);
 }
 
-static void
-	*ft_split_range(char **split, char const *s,
-		t_split_next *st, t_split_next *lt)
+char **ft_split(char *str, char *charset)
 {
-	split[lt->length] = ft_putstr(s, st->start, st->length);
-	if (!split[lt->length])
-		return (ft_free_all_split_alloc(split, lt->length));
-	lt->length++;
-	return (split);
-}
+	char	**tab;
+	int		nbword;
+	int		i;
 
-static void
-	*ft_split_by_char(char **split, char const *s, char c)
-{
-	size_t			i;
-	t_split_next	st;
-	t_split_next	lt;
-
+	nbword = ft_split_count_words(str, charset);
+	tab = malloc(sizeof(char *) * (nbword + 1));
 	i = 0;
-	lt.length = 0;
-	lt.start = 0;
-	while (s[i])
+	while (i < nbword)
 	{
-		if (s[i] == c)
-		{
-			st.start = lt.start;
-			st.length = (i - lt.start);
-			if (i > lt.start && !ft_split_range(split, s, &st, &lt))
-				return (NULL);
-			lt.start = i + 1;
-		}
+		tab[i] = ft_strdup(ft_split_get_word(str, charset, i + 1));
 		i++;
 	}
-	st.start = lt.start;
-	st.length = (i - lt.start);
-	if (i > lt.start && i > 0 && !ft_split_range(split, s, &st, &lt))
-		return (NULL);
-	split[lt.length] = 0;
-	return (split);
-}
-
-char
-	**ft_split(char const *s, char c)
-{
-	char	**split;
-
-	if (!(split = ft_alloc_split(s, c)))
-		return (NULL);
-	if (!ft_split_by_char(split, s, c))
-		return (NULL);
-	return (split);
+	tab[i] = malloc(sizeof(char) * 1);
+	tab[i][0] = '\0';
+	return (tab);
 }
