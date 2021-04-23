@@ -1,6 +1,7 @@
 #include <libft.h>
 
-int		ft_split_count_words(char *str, char *charset)
+int
+	ft_split_count_words(char *str, char *charset)
 {
 	int	c;
 	int	word;
@@ -55,16 +56,17 @@ char	*ft_split_get_word(char *str, char *charset, int nword)
 		else
 			ft_split_new_word(&lword, &word, &c);
 		if (((ft_strncmp(&str[c], charset, ft_strlen(charset)) == 0)
-			|| str[c] == '\0') && word == nword)
-			{
-				strword = malloc(sizeof(char *) * (lword + 1));
-				return (ft_strncpy(strword, &str[c - (lword)], lword));
-			}
+				 || str[c] == '\0') && word == nword)
+		{
+			strword = malloc(sizeof(char *) * (lword + 1));
+			return (ft_strncpy(strword, &str[c - (lword)], lword));
+		}
 	}
 	return (NULL);
 }
 
-char **ft_split(char *str, char *charset)
+char
+	**ft_split(char *str, char *charset)
 {
 	char	**tab;
 	int		nbword;
