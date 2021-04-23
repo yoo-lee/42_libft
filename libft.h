@@ -6,13 +6,17 @@
 /*   By: yoo-lee <yoo-lee@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 10:09:55 by yoo-lee           #+#    #+#             */
-/*   Updated: 2021/04/21 10:15:21 by yoo-lee          ###   ########.fr       */
+/*   Updated: 2021/04/23 17:33:51 by yoo-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 # include <string.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <fcntl.h>
+# include <unistd.h>
 
 typedef struct s_list
 {
@@ -30,6 +34,7 @@ int				ft_isascii(int c);
 int				ft_isprint(int c);
 int				ft_toupper(int c);
 int				ft_tolower(int c);
+void			ft_putendl_fd(char *s, int fd);
 void			ft_putchar_fd(char c, int fd);
 void			ft_putchar(char c);
 void			ft_putnbr_fd(int nb, int fd);
@@ -45,7 +50,6 @@ char			*ft_strdup(const char *src);
 size_t			ft_strlcat(char *dest, const char *src, size_t size);
 size_t			ft_strlen(const char *str);
 char			*ft_strncat(char *dest, const char *src, size_t nb);
-char			*ft_strstr(const char *str, const char *to_find);
 char			*ft_strchr(const char *s, int c);
 char			*ft_strrev(char *str);
 char			*ft_strrchr(const char *s, int c);
@@ -57,8 +61,6 @@ void			*ft_memccpy(void *dst, const void *src, int c, size_t n);
 void			*ft_memmove(void *dst, const void *src, size_t len);
 void			*ft_memchr(const void *s, int c, size_t n);
 int				ft_memcmp(const void *s1, const void *s2, size_t n);
-void			ft_putendl_fd(char const *s, int fd);
-void			ft_putendl(char const *s);
 char			*ft_itoa(int nbr);
 char			**ft_strsplit(char const *s, char c);
 void			*ft_memalloc(size_t size);
@@ -76,7 +78,7 @@ char			*ft_strsub(char const *s, unsigned int start, size_t len);
 char			*ft_strjoin(char const *s1, char const *s2);
 unsigned int	ft_strcntfirstchar(char *str, const char *charset);
 unsigned int	ft_strcntlastchar(char *str, const char *charset);
-char			*ft_strtrim(char const *s);
+char			*ft_strtrim(char const *s char const *set);
 char			**ft_strsplitchrset(char *str, const char *charset);
 void			*ft_dup(void const *content, size_t content_size);
 t_list			*ft_lstnew(void const *content, size_t content_size);

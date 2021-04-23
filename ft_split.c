@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yoo-lee <yoo-lee@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/23 12:19:49 by yoo-lee           #+#    #+#             */
+/*   Updated: 2021/04/23 17:43:55 by yoo-lee          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 static char
@@ -40,7 +52,7 @@ static void
 	*ft_split_range(char **split, char const *s,
 		t_split_next *st, t_split_next *lt)
 {
-	split[lt->length] = ft_substr(s, st->start, st->length);
+	split[lt->length] = ft_putstr(s, st->start, st->length);
 	if (!split[lt->length])
 		return (ft_free_all_split_alloc(split, lt->length));
 	lt->length++;

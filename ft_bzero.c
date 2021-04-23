@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yoo-lee <yoo-lee@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/23 12:21:12 by yoo-lee           #+#    #+#             */
-/*   Updated: 2021/04/23 12:21:13 by yoo-lee          ###   ########.fr       */
+/*   Created: 2021/04/23 13:36:26 by yoo-lee           #+#    #+#             */
+/*   Updated: 2021/04/23 15:29:23 by yoo-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char
-	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+void	ft_bzero(void *s, size_t n)
 {
-	char	*str;
-	size_t	i;
+	char		*i;
 
-	if (!(str = ft_strdup(s)))
-		return (NULL);
-	i = 0;
-	while (str[i])
+	i = s;
+	while (n)
 	{
-		str[i] = (*f)(i, str[i]);
+		*i = 0;
 		i++;
+		n--;
 	}
-	return (str);
 }

@@ -1,49 +1,42 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yoo-lee <yoo-lee@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/23 12:17:36 by yoo-lee           #+#    #+#             */
+/*   Updated: 2021/04/23 15:29:05 by yoo-lee          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-static int
-	ft_abs(int nbr)
+char	*ft_itoa(int n)
 {
-	return ((nbr < 0) ? -nbr : nbr);
-}
+	char	*number;
 
-static void
-	ft_strrev(char *str)
-{
-	size_t	length;
-	size_t	i;
-	char	tmp;
-
-	length = ft_strlen(str);
-	i = 0;
-	while (i < length / 2)
+	number = (char *)ft_memalloc(10);
+	if (n >= 0 && number)
 	{
-		tmp = str[i];
-		str[i] = str[length - i - 1];
-		str[length - i - 1] = tmp;
-		i++;
+		*--number = '0' + (n % 10);
+		n /= 10;
+		while (n != 0)
+		{
+			*--number = '0' + (n % 10);
+			n /= 10;
+		}
 	}
-}
-
-char
-	*ft_itoa(int n)
-{
-	char	*str;
-	int		is_neg;
-	size_t	length;
-
-	is_neg = (n < 0);
-	if (!(str = ft_calloc(11 + is_neg, sizeof(*str))))
-		return (NULL);
-	if (n == 0)
-		str[0] = '0';
-	length = 0;
-	while (n != 0)
+	else if (number)
 	{
-		str[length++] = '0' + ft_abs(n % 10);
-		n = (n / 10);
+		*--number = '0' - (n % 10);
+		n /= 10;
+		while (n != 0)
+		{
+			*--number = '0' - (n % 10);
+			n /= 10;
+		}
+		*--number = '-';
 	}
-	if (is_neg)
-		str[length] = '-';
-	ft_strrev(str);
-	return (str);
+	return (ft_strdup(number));
 }
