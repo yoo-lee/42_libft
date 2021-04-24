@@ -1,86 +1,91 @@
-#include <libft.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yoo-lee <yoo-lee@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/24 21:21:01 by yoo-lee           #+#    #+#             */
+/*   Updated: 2021/04/24 21:42:27 by yoo-lee          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int
-	ft_split_count_words(char *str, char *charset)
+#include "libft.h"
+
+static int		unleah(char **str, int size)
 {
-	int	c;
-	int	word;
-	int	lword;
-
-	c = 0;
-	word = 0;
-	lword = 0;
-	while (str[c] != '\0')
-	{
-		if (ft_strncmp(&str[c], charset, ft_strlen(charset)) == 0)
-		{
-			c += ft_strlen(charset);
-			lword = 0;
-		}
-		else
-		{
-			if (!lword)
-				word++;
-			lword++;
-			c++;
-		}
-	}
-	return (word);
+	while (size--)
+		free(str[size]);
+	return (-1);
 }
 
-void	ft_split_new_word(int *lword, int *word, int *c)
+static int		count_words(const char *str, char charset)
 {
-	if (!*lword)
-		(*word)++;
-	(*lword)++;
-	(*c)++;
-}
+	int	i;
+	int	words;
 
-char	*ft_split_get_word(char *str, char *charset, int nword)
-{
-	int		c;
-	int		word;
-	int		lword;
-	char	*strword;
-
-	c = 0;
-	word = 0;
-	lword = 0;
-	while (str[c] != '\0')
-	{
-		if (ft_strncmp(&str[c], charset, ft_strlen(charset)) == 0)
-		{
-			c += ft_strlen(charset);
-			lword = 0;
-		}
-		else
-			ft_split_new_word(&lword, &word, &c);
-		if (((ft_strncmp(&str[c], charset, ft_strlen(charset)) == 0)
-				 || str[c] == '\0') && word == nword)
-		{
-			strword = malloc(sizeof(char *) * (lword + 1));
-			return (ft_strncpy(strword, &str[c - (lword)], lword));
-		}
-	}
-	return (NULL);
-}
-
-char
-	**ft_split(char *str, char *charset)
-{
-	char	**tab;
-	int		nbword;
-	int		i;
-
-	nbword = ft_split_count_words(str, charset);
-	tab = malloc(sizeof(char *) * (nbword + 1));
+	words = 0;
 	i = 0;
-	while (i < nbword)
+	while (str[i] != '\0')
 	{
-		tab[i] = ft_strdup(ft_split_get_word(str, charset, i + 1));
+		if ((str[i + 1] == charset || str[i + 1] == '\0') == 1
+				&& (str[i] == charset || str[i] == '\0') == 0)
+			words++;
 		i++;
 	}
-	tab[i] = malloc(sizeof(char) * 1);
-	tab[i][0] = '\0';
-	return (tab);
+	return (words);
+}
+
+static void		write_word(char *dest, const char *from, char charset)
+{
+	int	i;
+
+	i = 0;
+	while ((from[i] == charset || from[i] == '\0') == 0)
+	{
+		dest[i] = from[i];
+		i++;
+	}
+	dest[i] = '\0';
+}
+
+static int		write_split(char **split, const char *str, char charset)
+{
+	int		i;
+	int		j;
+	int		word;
+
+	word = 0;
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if ((str[i] == charset || str[i] == '\0') == 1)
+			i++;
+		else
+		{
+			j = 0;
+			while ((str[i + j] == charset || str[i + j] == '\0') == 0)
+				j++;
+			if ((split[word] = (char*)malloc(sizeof(char) * (j + 1))) == NULL)
+				return (unleah(split, word - 1));
+			write_word(split[word], str + i, charset);
+			i += j;
+			word++;
+		}
+	}
+	return (0);
+}
+
+char			**ft_split(const char *str, char c)
+{
+	char	**res;
+	int		words;
+
+	words = count_words(str, c);
+	if ((res = (char**)malloc(sizeof(char*) * (words + 1))) == NULL)
+		return (NULL);
+	res[words] = 0;
+	if (write_split(res, str, c) == -1)
+		return (NULL);
+	return (res);
 }

@@ -6,37 +6,47 @@
 /*   By: yoo-lee <yoo-lee@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 12:17:36 by yoo-lee           #+#    #+#             */
-/*   Updated: 2021/04/23 15:29:05 by yoo-lee          ###   ########.fr       */
+/*   Updated: 2021/04/24 21:02:16 by yoo-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_itoa(int n)
+static int	ft_len(int nbr)
 {
-	char	*number;
+	int len;
 
-	number = (char *)ft_memalloc(10);
-	if (n >= 0 && number)
+	len = 0;
+	len = (nbr <= 0 ? 1 : 0);
+	while (nbr != 0)
 	{
-		*--number = '0' + (n % 10);
-		n /= 10;
-		while (n != 0)
-		{
-			*--number = '0' + (n % 10);
-			n /= 10;
-		}
+		nbr = nbr / 10;
+		len++;
 	}
-	else if (number)
+	return (len);
+}
+
+char		*ft_itoa(int n)
+{
+	unsigned int	nbr;
+	int				sign;
+	int				len;
+	char			*alpha;
+
+	sign = (n < 0 ? 1 : 0);
+	alpha = NULL;
+	len = ft_len(n);
+	nbr = (n < 0 ? -n : n);
+	if ((alpha = malloc(sizeof(char) * len + 1)) == NULL)
+		return (NULL);
+	alpha[len--] = '\0';
+	while (len >= 0)
 	{
-		*--number = '0' - (n % 10);
-		n /= 10;
-		while (n != 0)
-		{
-			*--number = '0' - (n % 10);
-			n /= 10;
-		}
-		*--number = '-';
+		alpha[len] = nbr % 10 + '0';
+		nbr /= 10;
+		len--;
 	}
-	return (ft_strdup(number));
+	if (sign == 1)
+		alpha[0] = '-';
+	return (alpha);
 }
