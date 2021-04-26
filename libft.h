@@ -6,7 +6,7 @@
 /*   By: yoo-lee <yoo-lee@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 10:09:55 by yoo-lee           #+#    #+#             */
-/*   Updated: 2021/04/23 17:33:51 by yoo-lee          ###   ########.fr       */
+/*   Updated: 2021/04/26 20:53:40 by yoo-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <unistd.h>
+# include <limits.h>
 
 typedef struct s_list
 {

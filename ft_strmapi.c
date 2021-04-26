@@ -6,12 +6,14 @@
 /*   By: yoo-lee <yoo-lee@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 12:21:12 by yoo-lee           #+#    #+#             */
-/*   Updated: 2021/04/24 21:07:03 by yoo-lee          ###   ########.fr       */
+/*   Updated: 2021/04/26 22:03:15 by yoo-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+
+char	
+	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	unsigned int		len;
 	unsigned int		i;

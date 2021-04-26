@@ -6,7 +6,7 @@
 /*   By: yoo-lee <yoo-lee@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 13:59:16 by yoo-lee           #+#    #+#             */
-/*   Updated: 2021/04/25 23:24:41 by yoo-lee          ###   ########.fr       */
+/*   Updated: 2021/04/26 20:53:31 by yoo-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void
 	i = 0;
 	while (i < n)
 	{
-		*(char*)(dst + i) = *(char*)(src + i);
+		*(char *)(dst + i) = *(char *)(src + i);
 		i++;
 	}
 	return (dst);

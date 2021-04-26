@@ -6,7 +6,7 @@
 /*   By: yoo-lee <yoo-lee@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 12:13:03 by yoo-lee           #+#    #+#             */
-/*   Updated: 2021/04/25 12:19:42 by yoo-lee          ###   ########.fr       */
+/*   Updated: 2021/04/26 20:53:07 by yoo-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,19 @@ void
 	*ft_calloc(size_t count, size_t size)
 {
 	void	*ptr;
+	size_t	res;
 
-	ptr = (void *)malloc(count * size);
+	if (count * size > INT_MAX)
+		return (NULL);
+	if (!count || !size)
+		res = 1;
+	else
+	{
+		res = size * count;
+	}
+	ptr = malloc(res);
 	if (!ptr)
 		return (NULL);
-	if (ptr == 0)
-		return (0);
-	ft_bzero(ptr, count);
+	ft_bzero(ptr, res);
 	return (ptr);
 }
