@@ -61,9 +61,9 @@ char
 	else
 		n_l = n;
 	nb_digit = get_nb_digit(n_l, sign);
+	outstr = malloc(sizeof(char) * (nb_digit + 1));
 	if (!outstr)
-		(outstr = malloc(sizeof(char) * (nb_digit + 1)));
-	return (NULL);
+		return (NULL);
 	convert_nb(outstr, n_l, nb_digit, sign);
 	return (outstr);
 }

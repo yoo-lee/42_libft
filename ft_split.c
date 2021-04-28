@@ -70,9 +70,9 @@ static int
 			j = 0;
 			while ((str[i + j] == charset || str[i + j] == '\0') == 0)
 				j++;
+			split[word] = (char *)malloc(sizeof(char) * (j + 1));
 			if (split[word] == NULL)
-				(split[word] = (char *)malloc(sizeof(char) * (j + 1)));
-			return (unleah(split, word - 1));
+				return (unleah(split, word - 1));
 			write_word(split[word], str + i, charset);
 			i += j;
 			word++;
@@ -88,9 +88,9 @@ char
 	int		words;
 
 	words = count_words(str, c);
+	res = (char **)malloc(sizeof(char *) * (words + 1));
 	if (res == NULL)
-		(res = (char **)malloc(sizeof(char *) * (words + 1)));
-	return (NULL);
+		return (NULL);
 	res[words] = 0;
 	if (write_split(res, str, c) == -1)
 		return (NULL);

@@ -22,9 +22,9 @@ char
 	if (!s || !f)
 		return (NULL);
 	len = ft_strlen(s);
+	out_str = malloc(sizeof(char) * (len + 1));
 	if (!out_str)
-		(out_str = malloc(sizeof(char) * (len + 1)));
-	return (NULL);
+		return (NULL);
 	i = 0;
 	while (s[i])
 	{
