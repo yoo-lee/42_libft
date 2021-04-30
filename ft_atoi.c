@@ -19,11 +19,10 @@ static int	whatsign(const char *str)
 
 	i = 0;
 	sign = 1;
-	while (str[i] && !ft_isdigit(str[i]))
 	{
-		if (str[i] == '-')
+		if (str[0] == '-')
 			sign = -1;
-		else if (str[i] == '+')
+		else if (str[0] == '+')
 			sign = 1;
 		i++;
 	}

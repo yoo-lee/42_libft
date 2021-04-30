@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+
 static unsigned int	get_nb_digit(long n_l, int sign)
 {
 	unsigned int	nb_digit;

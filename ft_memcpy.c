@@ -27,7 +27,4 @@ void
 	}
 	return (dst);
 }
-//int main(void)
-//{
-//	ft_memcpy(((void *)0), "segfaulter tu dois", 17);
-//}
+

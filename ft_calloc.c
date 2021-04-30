@@ -18,7 +18,7 @@ void
 	void	*ptr;
 	size_t	res;
 
-	if (count * size > INT_MAX)
+	if (count * size > SSIZE_MAX)
 		return (NULL);
 	if (!count || !size)
 		res = 1;
