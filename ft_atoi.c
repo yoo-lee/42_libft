@@ -10,46 +10,51 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include	"libft.h"
 
-static int	whatsign(const char *str)
+static unsigned long	ft_return_num(int i, int minus, const char *str)
 {
-	int		i;
-	int		sign;
+	unsigned long	num;
 
-	i = 0;
-	sign = 1;
+	num = 0;
+	while (str[i] && '0' <= str[i] && str[i] <= '9')
 	{
-		if (str[0] == '-')
-			sign = -1;
-		else if (str[0] == '+')
-			sign = 1;
+		if (num > (unsigned long)(LONG_MAX / 10))
+		{
+			if (minus == 1)
+				return (LONG_MAX);
+			else
+				return (LONG_MIN);
+		}
+		else if (num == (unsigned long)(LONG_MAX / 10))
+		{
+			if ((str[i] - '0') > LONG_MAX % 10 && minus == 1)
+				return (LONG_MAX);
+			if ((str[i] - '0') > LONG_MAX % 10 + 1 && minus == -1)
+				return (LONG_MIN);
+		}
+		num *= 10;
+		num += str[i] - '0';
 		i++;
 	}
-	return (sign);
+	return (num);
 }
 
 int	ft_atoi(const char *str)
 {
-	int		n;
 	int		i;
-	int		sign;
-	char	*s;
+	int		minus;
 
-	n = 0;
 	i = 0;
-	s = ft_strdup(str);
-	sign = (whatsign(s));
-	while (s[i] == ' ' || s[i] == '\t' || s[i] == '\n'
-		|| s[i] == '\v' || s[i] == '\r' || s[i] == '\f')
+	minus = 1;
+	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n'
+		|| str[i] == '\v' || str[i] == '\f' || str[i] == '\r')
 		i++;
-	if (s[i] == '+' || s[i] == '-')
-		i++;
-	while (ft_isdigit(s[i]))
+	if (str[i] == '+' || str[i] == '-')
 	{
-		n *= 10;
-		n += (s[i] - '0');
+		if (str[i] == '-')
+			minus *= -1;
 		i++;
 	}
-	return (n * sign);
+	return (ft_return_num(i, minus, str) * minus);
 }

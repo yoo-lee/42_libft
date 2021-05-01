@@ -10,61 +10,59 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include	"libft.h"
 
-static unsigned int	get_nb_digit(long n_l, int sign)
+static int	ft_checkdigits(long nbr)
 {
-	unsigned int	nb_digit;
+	int	count;
 
-	if (n_l == 0)
+	count = 0;
+	if (nbr == 0)
 		return (1);
-	nb_digit = 0;
-	while (n_l > 0)
+	while (nbr != 0)
 	{
-		n_l /= 10;
-		nb_digit++;
+		nbr = nbr / 10;
+		count++;
 	}
-	if (sign == -1)
-		nb_digit++;
-	return (nb_digit);
+	return (count);
 }
 
-static void			
-	convert_nb(char *outstr, long n_l, unsigned int nb_digit,
-		int sign)
+static char	*ft_putans(char *ans, int a, long nbr)
 {
-	outstr[nb_digit] = '\0';
-	outstr[--nb_digit] = n_l % 10 + '0';
-	n_l /= 10;
-	while (n_l > 0)
+	if (nbr == 0)
+		ans[0] = '0';
+	ans[a] = '\0';
+	while (nbr != 0)
 	{
-		outstr[--nb_digit] = n_l % 10 + '0';
-		n_l /= 10;
+		ans[a - 1] = nbr % 10 + '0';
+		a--;
+		nbr = nbr / 10;
 	}
-	if (sign == -1)
-		outstr[0] = '-';
+	return (ans);
 }
 
-char				
-	*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
-	char			*outstr;
-	long			n_l;
-	unsigned int	nb_digit;
-	int				sign;
+	char	*ans;
+	int		a;
+	long	nbr;
 
-	sign = 1;
-	if (n < 0)
+	nbr = (long)n;
+	if (nbr < 0)
 	{
-		n_l = (long)n * -1;
-		sign = -1;
+		ans = (char *)malloc(sizeof(char) * (ft_checkdigits(nbr) + 2));
+		if (!ans)
+			return (NULL);
+		a = ft_checkdigits(nbr) + 1;
+		ans[0] = '-';
+		nbr *= -1;
 	}
 	else
-		n_l = n;
-	nb_digit = get_nb_digit(n_l, sign);
-	outstr = malloc(sizeof(char) * (nb_digit + 1));
-	if (!outstr)
-		return (NULL);
-	convert_nb(outstr, n_l, nb_digit, sign);
-	return (outstr);
+	{
+		ans = (char *)malloc(sizeof(char) * (ft_checkdigits(nbr) + 1));
+		if (!ans)
+			return (NULL);
+		a = ft_checkdigits(nbr);
+	}
+	return (ft_putans(ans, a, nbr));
 }
