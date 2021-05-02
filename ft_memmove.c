@@ -10,31 +10,32 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include	"libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+void	*ft_memmove(void *buf1, const void *buf2, size_t n)
 {
-	int	i;
+	size_t					i;
+	unsigned char			*str1;
+	const unsigned char		*str2;
 
-	if (!dst || !src)
-		return (NULL);
-	if (dst > src)
+	if (buf1 == buf2)
+		return (buf1);
+	str1 = buf1;
+	str2 = buf2;
+	if (str2 <= str1)
 	{
-		i = (int)len - 1;
-		while (i >= 0)
-		{
-			*(char *)(dst + i) = *(char *)(src + i);
-			i--;
-		}
+		i = n;
+		while (i-- > 0)
+			str1[i] = str2[i];
 	}
 	else
 	{
 		i = 0;
-		while (i < (int)len)
+		while (i < n)
 		{
-			*(char *)(dst + i) = *(char *)(src + i);
+			str1[i] = str2[i];
 			i++;
 		}
 	}
-	return (dst);
+	return (buf1);
 }

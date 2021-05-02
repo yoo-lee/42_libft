@@ -18,12 +18,13 @@ void
 	void	*ptr;
 	size_t	res;
 
-	if (count * size > SSIZE_MAX)
-		return (NULL);
+	
 	if (!count || !size)
 		res = 1;
 	else
 	{
+		if (__SIZE_MAX__ / count < size)
+	return (NULL);
 		res = size * count;
 	}
 	ptr = malloc(res);
