@@ -29,3 +29,10 @@ char	*ft_strchr(const char *s, int c)
 		return ((char *)(s + i));
 	return (NULL);
 }
+
+
+int main(void)
+{
+	ft_strchr(((void *)0), '\0');
+	return 0;
+}
