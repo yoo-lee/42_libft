@@ -6,7 +6,7 @@
 /*   By: yoo-lee <yoo-lee@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 10:09:55 by yoo-lee           #+#    #+#             */
-/*   Updated: 2021/04/26 20:53:40 by yoo-lee          ###   ########.fr       */
+/*   Updated: 2021/05/03 10:56:44 by yoo-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ size_t			ft_strlcpy(char *dest, const char *src, size_t size);
 size_t			ft_strlen(const char *str);
 char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
-char			*ft_strnstr(const char *haystack, const char *needle, size_t len);
+char			*ft_strnstr(const char *haystack, const char *needle,
+				size_t len);
 char			*ft_strrchr(const char *s, int c);
 char			*ft_strtrim(char const *s1, char const *set);
 char			*ft_substr(char const *s, unsigned int start, size_t len);

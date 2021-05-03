@@ -6,7 +6,7 @@
 /*   By: yoo-lee <yoo-lee@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 12:21:31 by yoo-lee           #+#    #+#             */
-/*   Updated: 2021/04/23 12:21:34 by yoo-lee          ###   ########.fr       */
+/*   Updated: 2021/05/03 12:29:26 by yoo-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ char
 	size_t	start;
 	size_t	end;
 
+	if (s1 == NULL)
+		return (NULL);
 	start = 0;
 	while (s1[start] && ft_char_in_set(s1[start], set))
 		start++;

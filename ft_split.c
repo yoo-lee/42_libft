@@ -6,7 +6,7 @@
 /*   By: yoo-lee <yoo-lee@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 21:21:01 by yoo-lee           #+#    #+#             */
-/*   Updated: 2021/04/26 20:53:26 by yoo-lee          ###   ########.fr       */
+/*   Updated: 2021/05/03 12:27:54 by yoo-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ char
 	char	**res;
 	int		words;
 
+	if (str == NULL)
+		return (NULL);
 	words = count_words(str, c);
 	res = (char **)malloc(sizeof(char *) * (words + 1));
 	if (res == NULL)

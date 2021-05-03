@@ -6,7 +6,7 @@
 /*   By: yoo-lee <yoo-lee@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 12:19:07 by yoo-lee           #+#    #+#             */
-/*   Updated: 2021/04/23 12:19:13 by yoo-lee          ###   ########.fr       */
+/*   Updated: 2021/05/03 12:33:59 by yoo-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void
 	ft_putendl_fd(char *s, int fd)
 {
-	const char	nl = '\n';
-
+	if (!s)
+		return ;
 	write(fd, s, ft_strlen(s));
-	write(fd, &nl, 1);
+	ft_putchar_fd('\n', fd);
 }
