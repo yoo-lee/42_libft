@@ -6,7 +6,7 @@
 /*   By: yoo-lee <yoo-lee@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 21:21:01 by yoo-lee           #+#    #+#             */
-/*   Updated: 2021/05/03 12:27:54 by yoo-lee          ###   ########.fr       */
+/*   Updated: 2021/05/04 08:07:10 by yoo-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ static void
 static int		
 	write_split(char **split, const char *str, char charset)
 {
-	int		i;
-	int		j;
-	int		word;
+	size_t		i;
+	size_t		j;
+	size_t		word;
 
 	word = 0;
 	i = 0;

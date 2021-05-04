@@ -15,10 +15,12 @@ endif
 $(NAME) : $(OBJS)
 	ar rcs $(NAME) $(OBJS)
 
+HEADER = libft.h
+
 all: $(NAME)
 
 .c.o:
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@ -I ${HEADER}
 
 clean:
 	rm -f $(M_OBJS) $(B_OBJS)
