@@ -6,7 +6,7 @@
 /*   By: yoo-lee <yoo-lee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 20:54:26 by yoo-lee           #+#    #+#             */
-/*   Updated: 2022/03/31 13:30:18 by yoo-lee          ###   ########.fr       */
+/*   Updated: 2022/04/02 20:55:25 by yoo-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,18 @@ void	ft_lstadd_front(t_list **lst, t_list *new)
 		new->next = *lst;
 	*lst = new;
 }
+
+// lst = (list1 -> list2 -> list3)
+// new = head
+// new = head -> list1 -> list2 -> list3
+// list = (list1 -> ... -> list3)
+// 23 行目の根拠は以上の理由による。
+
+/* lst: The address of a pointer to the first link of
+a list.
+new: The address of a pointer to the node to be
+added to the list
+Adds the node ’new’ at the beginning of the list. */
 
 /* void printlst(t_list *lst)
 {

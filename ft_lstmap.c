@@ -6,7 +6,7 @@
 /*   By: yoo-lee <yoo-lee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 20:54:45 by yoo-lee           #+#    #+#             */
-/*   Updated: 2022/03/31 13:30:12 by yoo-lee          ###   ########.fr       */
+/*   Updated: 2022/04/04 11:27:40 by yoo-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	}
 	return (new_lst);
 }
-
 /* lst: The address of a pointer to a node.
 f: The address of the function used to iterate on
 the list.
