@@ -6,11 +6,16 @@ SRCS_B = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c 				\
 CC			=	gcc
 CFLAGS		=	-Wall -Wextra -Werror -c
 RM			=	rm -f
-NORM		=	norminette *.h && norminette *.c 
+NORM		=	norminette *.h && norminette *.c
 
+ifdef WITH_BONUS=1
+OBJS		+=	$(B_OBJS)
+endif
 OBJS		=	$(SRCS:%.c=%.o)
 
 OBJS_B		=	$(SRCS_B:%.c=%.o)
+
+%.o 		: 	%.c
 
 all			:	$(NAME)
 
@@ -26,8 +31,8 @@ $(OBJS_B) 	:	$(SRCS_B)
 n			:
 	$(NORM)
 
-bonus 		:	fclean $(OBJS) $(OBJS_B)
-	ar rc $(NAME) $(OBJS) $(OBJS_B)
+bonus 		:	$(OBJS_B)
+	ar rc $(NAME) $(OBJS_B)
 
 clean		: 
 	$(RM) $(OBJS) $(OBJS_B)
@@ -36,3 +41,5 @@ fclean		:	clean
 	$(RM) $(NAME)
 
 re			:	fclean all
+
+

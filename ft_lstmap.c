@@ -6,7 +6,7 @@
 /*   By: yoo-lee <yoo-lee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 20:54:45 by yoo-lee           #+#    #+#             */
-/*   Updated: 2022/04/04 11:27:40 by yoo-lee          ###   ########.fr       */
+/*   Updated: 2022/04/11 17:38:26 by yoo-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 
 	if (!f || !del)
 		return (NULL);
+	new_elem = NULL;
 	new_lst = NULL;
 	while (lst)
 	{
