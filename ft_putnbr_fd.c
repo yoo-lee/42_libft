@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoo-lee <yoo-lee@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: yoo-lee <yoo-lee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 12:19:27 by yoo-lee           #+#    #+#             */
-/*   Updated: 2021/04/23 12:19:33 by yoo-lee          ###   ########.fr       */
+/*   Updated: 2023/01/30 12:05:49 by yoo-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,3 +37,10 @@ void	ft_putnbr_fd(int n, int fd)
 		ft_putnbr_fd((n % 10), fd);
 	}
 }
+
+// int main ()
+// {
+// 		ft_putnbr_fd(2147483648, 1);
+// 		printf("\n");
+	
+// }
